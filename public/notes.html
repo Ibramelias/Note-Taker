@@ -37,23 +37,17 @@
             <a class="btn btn-primary btn-lg mt-4" id="add-btn" href="./notes.html" role="button">Add Note</a>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header">
-            <h3><strong>Add Notes</strong></h3>
+        <form id="table">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Note Title</label>
+            <input type="title" class="form-control">
           </div>
-          <div class="card-body">
-            <form method="POST" role="form">
-              <div class="form-group">
-                <label for="name">Note Title</label>
-                <input type="text" class="form-control" id="name">
-              </div>
-              <div class="form-group">
-                <label for="text">Note Text</label>
-                <textarea type="text" class="form-control" id="role"></textarea>
-              </div>
-            </form>
+          <div class="form-group">
+            <label for="text">Note</label>
+            <textarea type="textarea" class="form-control"></textarea>
           </div>
-        </div>
+          <button type="submit" href="#" class="btn btn-primary">Submit</button>
+        </form>
       </div>
     </div>
   </div>
