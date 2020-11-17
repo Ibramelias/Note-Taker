@@ -5,7 +5,7 @@ const path = require ("path");
 
 // Sets up the Express App
 const app = express()
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Set up the Express ass to handel data parsing
 app.use(express.urlencoded({ extended: true }));
@@ -16,34 +16,36 @@ app.use(express.json());
 var notes = [
     {
       routeName: "day1",
-      name: "Day1",
-      role: "Jedi Master",
+      name: "Day one",
+      text: "College Time",
     },
     {
       routeName: "day2",
-      name: "Day2",
-      role: "Sith Lord",
+      name: "Day two",
+      text: "Work Time",
     },
     {
       routeName: "day3",
-      name: "Day3",
-      role: "Jedi Master",
+      name: "Day three",
+      text: "Shopping Time",
     }
   ];
 
   // Basic route that sends the user first to the AJAX Page
-app.get("/", function(req, res) {
-    // res.send("Welcome to the Star Wars Page!")
-    res.send("welcome");
-  });
+  app.get("/",function(req, res){
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
 
+app.get("/notes",function(req, res){
+  res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
   
-  // Displays all characters
+  // Displays all notes in JSON
   app.get("/api/notes", function(req, res) {
     return res.json(notes);
   });
   
-  // Displays a single character, or returns false
+  // Displays a single note, or returns false
   app.get("/api/notes/:note", function(req, res) {
     var chosen = req.params.note;
   
@@ -58,23 +60,21 @@ app.get("/", function(req, res) {
     return res.json(false);
   });
   
-  // Create New Characters - takes in JSON input
+  // Create New note - takes in JSON input
   app.post("/api/notes", function(req, res) {
-    // req.body hosts is equal to the JSON post sent from the user
-    // This works because of our body parsing middleware
-    var newcharacter = req.body;
+   
+    var newnote = req.body;
   
-    console.log(newcharacter);
+    console.log(newnote);
   
-    // We then add the json the user sent to the character array
-    characters.push(newnote);
+    // We then add the json the user sent to the note array
+    notes.push(newnote);
   
     // We then display the JSON to the users
     res.json(newnote);
   });
   
   // Starts the server to begin listening
-  // =============================================================
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
