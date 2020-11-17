@@ -2,6 +2,7 @@
 const express = require ("express");
 const fs = require ("fs");
 const path = require ("path");
+const notes = require("./db/db.json");
 
 // Sets up the Express App
 const app = express()
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Set up the Express ass to handel data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("public"));
 
 
 // Notes (DATA)
@@ -32,21 +34,21 @@ var notes = [
   ];
 
   // Basic route that sends the user first to the AJAX Page
-  app.get("/",function(req, res){
+  app.get("/",(req, res)=>{
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
-app.get("/notes",function(req, res){
+app.get("/notes",(req, res)=>{
   res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
   
   // Displays all notes in JSON
-  app.get("/api/notes", function(req, res) {
+  app.get("/api/notes", (req, res)=> {
     return res.json(notes);
   });
   
   // Displays a single note, or returns false
-  app.get("/api/notes/:note", function(req, res) {
+  app.get("/api/notes/:note", (req, res)=> {
     var chosen = req.params.note;
   
     console.log(chosen);
@@ -61,9 +63,9 @@ app.get("/notes",function(req, res){
   });
   
   // Create New note - takes in JSON input
-  app.post("/api/notes", function(req, res) {
+  app.post("/api/notes", (req, res)=> {
    
-    var newnote = req.body;
+    const newnote = req.body;
   
     console.log(newnote);
   
@@ -72,6 +74,12 @@ app.get("/notes",function(req, res){
   
     // We then display the JSON to the users
     res.json(newnote);
+  });
+
+
+  //DELETE route
+  app.delete("/api/notes/:id", (req,res)=>{
+
   });
   
   // Starts the server to begin listening
