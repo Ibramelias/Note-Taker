@@ -8,9 +8,9 @@ const app = express()
 const PORT = process.env.PORT || 3000;
 
 // Set up the Express ass to handel data parsing
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", (req, res) => {
@@ -36,38 +36,38 @@ app.get("*", (req, res) => {
 });
 
 
-  // Create New note - takes in JSON input
-  app.post("/api/notes", (req, res) => {
-    newNote = req.body;
+// Create New note - takes in JSON input
+app.post("/api/notes/", (req, res) => {
+  newNote = req.body;
 
-    fs.readFile((__dirname, + "/db/db.json",(err,data)=>{
-      var json = JSON.parse(data);
-      JSON.push(newNote);
+  fs.readFile(__dirname + "/db/db.json", (err, data) => {
+    var json = JSON.parse(data);
+    json.push(newNote);
 
-
-      fs.writeFileSync(__dirname + "/db/db.json", JSON.stringify(json));
-
-    }));
-   
-  });
-
-
-  //DELETE route
-  app.delete("/api/notes/:id", (req, res) => {
-    let response = req.params;
-    let id = response.id;
-
-    fs.readFile(__dirname + "/db/db.json", (err,data)=>{
-      var json = JSON.parse(data);
-
-      const filtereJSON = json.filter((element)=> elemnent.id !==id);
-
-      fs.writeFileSync(__dirname + "/db/db.json", JSON.stringify(filtereJSON));
-    })
+    fs.writeFileSync(__dirname + "/db/db.json", JSON.stringify(json));
 
   });
+});
 
-  // Starts the server to begin listening
-  app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
+
+
+//DELETE route
+app.delete("/api/notes/:id", (req, res) => {
+  let response = req.params;
+  let id = response.id;
+  console.log(`Note id: ${id} marked for deletion`);
+
+  fs.readFile(__dirname + "/db/db.json", (err, data) => {
+    var json = JSON.parse(data);
+
+    const filtereJson = json.filter((element) => element.id !== id);
+
+    fs.writeFileSync(__dirname + "/db/db.json", JSON.stringify(filtereJson));
   });
+
+});
+
+// Starts the server to begin listening
+app.listen(PORT, function () {
+  console.log("App listening on PORT " + PORT);
+});
