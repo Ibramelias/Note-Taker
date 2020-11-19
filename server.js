@@ -5,7 +5,7 @@ const path = require("path");
 
 // Sets up the Express App
 const app = express()
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Set up the Express ass to handel data parsing
 app.use(express.static("public"));
@@ -69,5 +69,5 @@ app.delete("/api/notes/:id", (req, res) => {
 
 // Starts the server to begin listening
 app.listen(PORT, function () {
-  console.log("App listening on PORT " + PORT);
+  console.log("App started on " + PORT);
 });
