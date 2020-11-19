@@ -1,5 +1,5 @@
 # Note-Taker
-Store your ideas and thoughts using express.js
+Store your ideas using express.js
 
 ## Description.
 An application allows a user to enter, save and delete notes.
