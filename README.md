@@ -12,4 +12,4 @@ An application allows a user to enter, save and delete notes.
 * Add a new note by entering a title and body and the click on save button.
 
 ## Supporting image
-![](img/Screen%20Shot%202020-11-18%20at%8.14.34%20PM.png)
+![](img/Screen%20Shot%202020-11-18%20at%208.14.34%20PM.png)
