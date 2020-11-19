@@ -5,7 +5,7 @@ Store your ideas and thoughts using express.js
 An application allows a user to enter, save and delete notes.
 
 ## How it works.
-* [Open the link]()
+* [Open the link](https://note-taker-cbc1.herokuapp.com/)
 * Click the "Get Started" button to be taken to the notes screen.
 * View your old notes, will be on the left hand navigation.
 * Delete your old notes by clicking on the trash can.
