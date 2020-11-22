@@ -8,8 +8,8 @@ An application allows a user to enter, save and delete notes.
 * [Open the link](https://note-taker-cbc1.herokuapp.com/)
 * Click the "Get Started" button to be taken to the notes screen.
 * View your old notes, will be on the left hand navigation.
-* Delete your old notes by clicking on the trash can.
-* Add a new note by entering a title and body and the click on save button.
+* Delete your old notes by clicking on the trash can, and then refresh the page.
+* Add a new note by entering a title and body and the click on save button, and then refresh the page.
 
 ## Supporting image
 ![](img/Screen%20Shot%202020-11-18%20at%208.14.34%20PM.png)
