@@ -22,9 +22,9 @@ app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
+// Create New note - takes in JSON input
 app.post("/api/notes/", (req, res) => {
   let newNote = {id: uuidv4(), ...req.body}
-  
   fs.readFile(__dirname + "/db/db.json", (err, data) => {
     var json = JSON.parse(data);
     json.push(newNote);
@@ -35,6 +35,7 @@ app.post("/api/notes/", (req, res) => {
   });
 });
 
+//DELETE route
 app.delete("/api/notes/:id", (req, res) => {
   let response = req.params;
   let id = response.id;
@@ -65,13 +66,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-
-// Create New note - takes in JSON input
-
-
-
-
-//DELETE route
 
 // Starts the server to begin listening
 app.listen(PORT, function () {
