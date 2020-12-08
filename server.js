@@ -4,6 +4,8 @@ const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require('uuid');
 
+
+
 // Sets up the Express App
 const app = express()
 const PORT = process.env.PORT || 3001;
@@ -33,6 +35,7 @@ app.post("/api/notes/", (req, res) => {
     fs.writeFileSync(__dirname + "/db/db.json", JSON.stringify(json));
 
   });
+  
 });
 
 //DELETE route
@@ -48,7 +51,6 @@ app.delete("/api/notes/:id", (req, res) => {
 
     fs.writeFileSync(__dirname + "/db/db.json", JSON.stringify(filtereJson));
   });
-
 });
 
 
